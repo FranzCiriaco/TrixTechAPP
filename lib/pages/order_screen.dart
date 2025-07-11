@@ -7,8 +7,8 @@ class OrderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> items = [
       {'name': 'Tables', 'icon': Icons.table_bar, 'stock': 12},
-      {'name': 'Chairs', 'icon': Icons.chair, 'stock': 50},
-      {'name': 'Tents', 'icon': Icons.holiday_village, 'stock': 5},
+      {'name': 'Chairs', 'icon': Icons.chair, 'stock': 700},
+      {'name': 'Tents', 'icon': Icons.holiday_village, 'stock': 10},
     ];
 
     return Scaffold(
