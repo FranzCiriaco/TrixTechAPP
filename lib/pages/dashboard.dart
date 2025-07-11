@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'order_screen.dart';
-
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({super.key});
@@ -30,22 +28,18 @@ class DashboardPage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.person),
               title: const Text('Profile'),
-              onTap: () {
-                // TODO: Navigate to profile
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
-              onTap: () {
-                // TODO: Navigate to settings
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.logout),
               title: const Text('Logout'),
               onTap: () {
-                Navigator.pop(context); // Close drawer
+                Navigator.pop(context);
                 Navigator.popUntil(context, ModalRoute.withName('/'));
               },
             ),
@@ -60,9 +54,9 @@ class DashboardPage extends StatelessWidget {
           crossAxisSpacing: 16,
           children: [
             _buildMenuItem(Icons.event, 'Events'),
-            _buildMenuItem(Icons.photo, 'Gallery'),
-            _buildMenuItemWithNav(context, Icons.shopping_cart, 'Orders'),
-            _buildMenuItem(Icons.analytics, 'Reports'),
+            _buildMenuItemWithNav(context, Icons.photo, 'Stock', '/Stock'),
+            _buildMenuItemWithNav(context, Icons.add_shopping_cart, 'Order', '/AddToCart'),
+            _buildMenuItemWithNav(context, Icons.shopping_cart, 'Cart', '/Cart'),
           ],
         ),
       ),
@@ -74,8 +68,29 @@ class DashboardPage extends StatelessWidget {
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
+        onTap: () {},
+        borderRadius: BorderRadius.circular(12),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 40, color: Colors.blue),
+              const SizedBox(height: 10),
+              Text(label, style: const TextStyle(fontSize: 16)),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuItemWithNav(BuildContext context, IconData icon, String label, String route) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
         onTap: () {
-          // TODO: Add onTap logic
+          Navigator.pushNamed(context, route);
         },
         borderRadius: BorderRadius.circular(12),
         child: Center(
@@ -91,29 +106,4 @@ class DashboardPage extends StatelessWidget {
       ),
     );
   }
-}
-Widget _buildMenuItemWithNav(BuildContext context, IconData icon, String label) {
-  return Card(
-    elevation: 4,
-    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-    child: InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const OrderScreen()),
-        );
-      },
-      borderRadius: BorderRadius.circular(12),
-      child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 40, color: Colors.blue),
-            const SizedBox(height: 10),
-            Text(label, style: const TextStyle(fontSize: 16)),
-          ],
-        ),
-      ),
-    ),
-  );
 }

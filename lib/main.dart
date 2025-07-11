@@ -1,11 +1,13 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'pages/login.dart';
 import 'pages/dashboard.dart';
-import 'pages/order_screen.dart';
+import 'pages/order.dart';
+import 'pages/cart.dart';
+import 'pages/stock.dart';
 
-void main() {
-  runApp(const TrixTechApp());
-}
+
+void main() => runApp(const TrixTechApp());
 
 class TrixTechApp extends StatelessWidget {
   const TrixTechApp({super.key});
@@ -14,14 +16,16 @@ class TrixTechApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'TrixTech',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: '/',
       routes: {
         '/': (context) => const LoginPage(),
         '/Dashboard': (context) => const DashboardPage(),
-        '/Orders': (context) => const OrderScreen(), // ✅ properly inside MaterialApp
+        '/Cart': (context) => const CartPage(),
+        '/Stock': (context) => const StockPage(),
+        '/Order': (context) => const OrderPage(),
       },
-      debugShowCheckedModeBanner: false,
     );
   }
 }
